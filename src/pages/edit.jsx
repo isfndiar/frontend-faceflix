@@ -5,7 +5,6 @@ import ButtonCancelAndSave from "../components/fragments/ButtonCancelAndSave";
 import useHandleEdit from "../hooks/useHandleEdit";
 
 const EditProfile = () => {
-  console.log("");
   const {
     name,
     setName,

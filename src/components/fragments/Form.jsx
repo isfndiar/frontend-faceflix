@@ -1,4 +1,11 @@
-const Form = ({ children, action, method, onSubmit, className }) => {
+const Form = ({
+  children,
+  action,
+  method,
+  onSubmit,
+  className,
+  isDisabled,
+}) => {
   return (
     <form
       className={className}
@@ -10,10 +17,13 @@ const Form = ({ children, action, method, onSubmit, className }) => {
 
       {children}
       <button
-        className="bg-[#87c4ff] hover:bg-[#87c3ffd0] h-10 font-bold text-xl"
+        disabled={isDisabled}
+        className={` h-10 font-bold text-xl ${
+          isDisabled ? `bg-blue-500` : "bg-[#87c4ff] hover:bg-[#87c3ffd0]"
+        }`}
         type="submit"
       >
-        Login
+        {isDisabled ? "Loading..." : "Login"}
       </button>
     </form>
   );

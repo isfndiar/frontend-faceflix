@@ -7,10 +7,11 @@ const FormLogin = () => {
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [isLogin, setIsLogin] = useState([]);
+  const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLogin(true);
 
     const user = {
       email,
@@ -27,6 +28,7 @@ const FormLogin = () => {
       });
 
       const data = await res.json();
+      console.log(data);
       if (data.errors) {
         throw data.errors;
       }
@@ -38,6 +40,7 @@ const FormLogin = () => {
     } finally {
       setEmail("");
       setPassword("");
+      setIsLogin(false);
     }
   };
 
@@ -52,6 +55,7 @@ const FormLogin = () => {
         {error ? <p className="text-[13px] text-red-500">{error}</p> : null}
       </div>
       <Form
+        isDisabled={isLogin}
         onSubmit={(e) => handleSubmit(e)}
         className={"  flex flex-col gap-2"}
       >

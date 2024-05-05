@@ -8,10 +8,18 @@ export const getUserCurrent = async (callback, token, error) => {
         "Content-Type": "application/json",
       },
     };
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/users/current`, config);
+    const res = await fetch(
+      `${import.meta.env.VITE_API_URL}/users/current`,
+      config
+    );
     const json = await res.json();
-    callback(json.data.data);
+    if (json.errors) {
+      throw json;
+    }
+    callback(json.data);
+    console.log(json);
   } catch (err) {
     error(err);
+    console.log(err);
   }
 };

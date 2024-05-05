@@ -15,7 +15,7 @@
   box-sizing: border-box;
 }
 
-.bg-auth::after {
+/* .bg-auth::after {
   content: "";
   position: fixed;
   background: url("background-atas.svg");
@@ -28,8 +28,8 @@
   top: 0;
 
   @apply max-w-[444px] mx-auto;
-}
-.bg-auth::before {
+} */
+/* .bg-auth::before {
   content: "";
   position: fixed;
   background: url("background-bawah.svg");
@@ -42,7 +42,7 @@
   bottom: -50px;
 
   @apply max-w-[444px] mx-auto  sm:bottom-[-100px];
-}
+} */
 
 .gallery {
   -webkit-column-count: 2;

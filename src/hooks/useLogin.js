@@ -6,7 +6,7 @@ const useLogin = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (!token) navigate("/login");
+    if (!token) navigate("/login"); 
     const fetchLogin = async () => {
       try {
         const config = {

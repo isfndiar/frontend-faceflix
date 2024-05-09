@@ -17,7 +17,7 @@
 
 .bg-auth::after {
   content: "";
-  background: url("login/bg-up.png");
+  background: url("/login/bg-up.png");
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -33,7 +33,7 @@
 .bg-auth::before {
   content: "";
   position: fixed;
-  background: url("login/bg-bottom.png");
+  background: url("/login/bg-bottom.png");
   background-position: center;
   background-size: cover;
   width: 100%;

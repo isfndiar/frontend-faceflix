@@ -56,6 +56,7 @@ const FormLogin = () => {
       </div>
       <Form
         isDisabled={isLogin}
+        onClick={() => setError("")}
         onSubmit={(e) => handleSubmit(e)}
         className={"  flex flex-col gap-2"}
       >
@@ -66,6 +67,7 @@ const FormLogin = () => {
           placeholder="Masukkan email"
           type="email"
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <input
           className="rounded-md bg-[#ffeed9] h-10 px-5"
@@ -74,6 +76,7 @@ const FormLogin = () => {
           type="password"
           placeholder="Masukkan Password"
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
       </Form>
     </div>

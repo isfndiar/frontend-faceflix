@@ -5,6 +5,7 @@ const Form = ({
   onSubmit,
   className,
   isDisabled,
+  onClick,
 }) => {
   return (
     <form
@@ -12,9 +13,9 @@ const Form = ({
       action={action}
       method={method}
       onSubmit={onSubmit}
+      onClick={onClick}
     >
       <div> </div>
-
       {children}
       <button
         disabled={isDisabled}

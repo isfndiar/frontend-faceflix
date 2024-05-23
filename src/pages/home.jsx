@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonNavigation from "../components/fragments/ButtonNavigation";
 import useLogin from "../hooks/useLogin";
 import CardImage from "../components/fragments/CardImage";
 import CardVideo from "../components/fragments/CardVideo";
 import CardBlog from "../components/fragments/CardBlog";
 import BannerPhotoLayouts from "../components/layouts/bannerPhotoLayouts";
+import useFetchData from "../hooks/useFetchData";
 
 const HomePage = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const { dataBlog, dataImage, dataVideo, data } = useFetchData();
 
-  const { data } = useLogin();
   return (
     <>
       <BannerPhotoLayouts data={data}>
@@ -28,9 +29,13 @@ const HomePage = () => {
             activeIndex={activeIndex}
             setActiveIndex={setActiveIndex}
           />
-          {activeIndex == 0 ? <CardImage id={data?.id} /> : null}
-          {activeIndex == 1 ? <CardVideo id={data?.id} /> : null}
-          {activeIndex == 2 ? <CardBlog id={data?.id} /> : null}
+          {activeIndex == 0 ? (
+            <CardImage id={data?.id} data={dataImage} />
+          ) : null}
+          {activeIndex == 1 ? (
+            <CardVideo id={data?.id} data={dataVideo} />
+          ) : null}
+          {activeIndex == 2 ? <CardBlog id={data?.id} data={dataBlog} /> : null}
         </main>
       </BannerPhotoLayouts>
     </>

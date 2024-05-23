@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { userImages } from "../../services/userImage";
 import Modal from "./Modal";
 
-const CardImage = ({ id }) => {
-  const [image, setImage] = useState([]);
+const CardImage = ({ id, data }) => {
   const [imagebyId, setImagebyId] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const handleClick = (imageId) => {
@@ -33,37 +32,15 @@ const CardImage = ({ id }) => {
     fetchImage();
   };
 
-  useEffect(() => {
-    const fetchImage = async () => {
-      const config = {
-        method: "get",
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      };
-      try {
-        const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/users/${id}/image`,
-          config
-        );
-        const json = await res.json();
-        setImage(json.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchImage();
-  }, [id]);
   return (
     <>
       <section
         className={`mt-5 w-full max-w-[444px]  mx-auto  ${
-          image.length > 0 ? "gallery" : ""
+          data.length > 0 ? "gallery" : ""
         }  `}
       >
-        {image.length > 0 ? (
-          image.map((item) => (
+        {data.length > 0 ? (
+          data.map((item) => (
             <div key={item?.id} className="mb-4">
               <img
                 onClick={() => handleClick(item?.id)}

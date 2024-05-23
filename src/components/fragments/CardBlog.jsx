@@ -1,39 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { userBlogs } from "../../services/userBlog";
 import Modal from "./Modal";
 
-const CardBlog = ({ id }) => {
-  const [blogs, setBlogs] = useState([]);
+const CardBlog = ({ id, data }) => {
   const [modalBlog, setModalBlog] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const fetchBlog = async () => {
-      const config = {
-        method: "get",
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      };
-      try {
-        const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/users/${id}/blog`,
-          config
-        );
-        const getBlogs = await res.json();
-        setBlogs(getBlogs.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchBlog();
-  }, [id]);
 
   const handleClick = (blogId) => {
     setIsOpen((isOpen) => !isOpen);
 
-    const fetchImage = async () => {
+    const fetchBlog = async () => {
       const config = {
         method: "get",
         headers: {
@@ -49,24 +24,24 @@ const CardBlog = ({ id }) => {
         if (!res.ok) {
           throw new Error("Images not found !!!");
         }
-        const getImages = await res.json();
-        setModalBlog(getImages.data);
+        const getBlog = await res.json();
+        setModalBlog(getBlog.data);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchImage();
+    fetchBlog();
   };
 
   return (
     <>
       <section
         className={`mt-5 w-full max-w-[444px] mx-auto  grid ${
-          blogs.length > 0 ? "grid-cols-2" : ""
+          data.length > 0 ? "grid-cols-2" : ""
         } gap-1`}
       >
-        {blogs.length > 0 ? (
-          blogs.map((item) => (
+        {data.length > 0 ? (
+          data.map((item) => (
             <div
               onClick={() => handleClick(item?.id)}
               key={item?.id}
